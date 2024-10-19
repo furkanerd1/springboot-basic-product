@@ -23,7 +23,10 @@ import java.util.Optional;
 
         @Override
         public List<Product> getAllProducts() {
-            return productRepository.findAll();
+            if (!(productRepository.findAll().isEmpty())) {
+                return  productRepository.findAll();
+            }
+          throw new RuntimeException("couldn't find any products");
         }
 
         @Override
@@ -32,7 +35,7 @@ import java.util.Optional;
             if (product.isPresent()) {
                 return product.get();
             }else{
-                throw new RuntimeException("id bulunamadı");
+                throw new RuntimeException("ID is not exist");
             }
 
 
@@ -49,6 +52,6 @@ import java.util.Optional;
              if (productRepository.existsById(id)) {
                  productRepository.deleteById(id);
              }
-             throw new RuntimeException("Geçersiz ID");
+             throw new RuntimeException("ID is not exist");
          }
 }
