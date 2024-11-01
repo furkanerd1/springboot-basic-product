@@ -51,4 +51,19 @@ public class ProductController {
         return "redirect:/products";
     }
 
+    @GetMapping("/update")
+    public String showUpdateForm(@RequestParam("productID") int productID,Model model) {
+        List<String> categoryList = Arrays.asList("Mobile Phone", "Tablet", "Laptop","Television","Headphone","Mouse","Keyboard","Monitor");
+        model.addAttribute("categories", categoryList);
+        Product theProduct = productService.getProductById(productID);
+        model.addAttribute("product", theProduct);
+        return "add";
+
+    }
+
+    @GetMapping("/delete")
+    public String delete(@RequestParam("productID") int productID) {
+        productService.deleteProduct(productID);
+        return "redirect:/products/list";
+    }
 }

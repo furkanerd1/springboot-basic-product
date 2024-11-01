@@ -60,9 +60,10 @@
         </div>
         <div class="card-body">
           <form action="#"  th:action="@{/products/save}" th:object="${product}" method="post">
+            <input type="hidden" th:field="${product.id}" />
             <div class="mb-2">
               <p class="form-label">Brand</p>
-              <input type="text" placeholder="enter brand" th:field="${product.brand}" class="form-control">
+              <input type="text" placeholder="enter brand" th:field="${product.brand}" class="form-control" required>
             </div>
             <div class="mb-2">
               <p class="form-label">Category</p>
@@ -75,7 +76,7 @@
             </div>
             <div class="mb-2">
               <p class="form-label">Information</p>
-              <textarea type="text" placeholder="enter informations about product" th:field="${product.information}" class="form-control"></textarea>
+              <textarea type="text" placeholder="enter informations about product" th:field="${product.information}" class="form-control" required></textarea>
             </div>
             <div class="mb-2">
               <p class="form-label">Price</p>
@@ -83,7 +84,7 @@
             </div>
             <div class="mb-2">
               <p class="form-label">Stock</p>
-              <input type="number" placeholder="enter stock" th:field="${product.stock}" class="form-control" min="0">
+              <input type="number" placeholder="enter stock" th:field="${product.stock}" class="form-control" min="0" >
             </div>
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
               <a th:href="@{/products}" class="btn btn-outline-secondary me-md-2">
